@@ -1,0 +1,204 @@
+* {
+  box-sizing: border-box;
+}
+
+:root {
+  --bg-start: rgb(242, 251, 252);
+  --bg-end: rgb(219, 241, 242);
+  --elements: rgb(155, 202, 210);
+  --text: rgb(45, 124, 208);
+  --light-purple: rgb(254, 251, 255);
+}
+
+.d-flex { 
+  display: flex;
+}
+
+.h-center {
+  justify-content: center;
+}
+
+.v-center {
+  align-items: center;
+}
+
+body {
+  margin: 0;
+  height: 100%;
+  background: var(--bg);
+  background-image: radial-gradient(circle at top left, var(--bg-start), var(--bg-end));
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+header {
+  width: 100%;
+  height: 38px;
+  padding: 0.5rem 2rem;
+  justify-content: space-between;
+}
+
+header .logo {
+  color: var(--elements);
+  font-weight: 800;
+}
+
+.container {
+  width: 100%;
+  height: 100vh;
+  flex-direction: column;
+}
+
+
+.app {
+  margin: 2rem 0 0;
+  width: 100%;
+  height: 100%;
+  flex-direction: column;
+}
+
+.board {
+  position: relative;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(3, 1fr);
+  row-gap: 1.5%;
+  column-gap: 1.5%;
+  background: rgba(250, 250, 250, 0);
+  width: 400px;
+  height: 400px;
+}
+
+.cell.fade {
+  opacity: 0.2;
+}
+
+.board .cell {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  background: var(--bg-end);
+  box-shadow: 0px 2px 6px 0px rgba(0, 0, 0, 0.405);
+  border-radius: 8px;
+  transition: background-color 0.5s ease-in-out;
+}
+
+.board .cell:hover{
+  background-color: rgb(230, 248, 249);
+  /* transform: scale(1.01); */
+}
+
+.board .cell .marker {
+  color: var(--text);
+  font-size: 2rem;
+  transition: transform, 0.3s;
+}
+
+.board .cell .marker.new {
+  transform: scale(40);
+}
+
+.btn {
+  width: 140px;
+  margin: 2rem 0 0;
+  padding: 1rem 1rem;
+  text-align: center;
+  font-weight: 600;
+  border-radius: 8px;
+  background-color: var(--elements);
+  color: var(--bg-start);
+  box-shadow: 8px 2px 12px 0px rgba(0, 0, 0, 0.205);
+  transition: all 0.7s ease-in-out;
+}
+
+.btn:hover {
+  cursor: pointer;
+  background-color: var(--bg);
+  color: var(--elements);
+}
+
+.overlay {
+  display: none;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  opacity: 0;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.0);
+  border-radius: 8px;
+  transition: all 6.3s;
+}
+
+.overlay .popup {
+  display: none;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  width: 91%;
+  height: 91%;
+  background-color: rgba(155, 202, 210, 0);
+  color: var(--bg-start);
+  font-size: 3.5rem;
+  font-weight: 600;
+  letter-spacing: 0.5rem;
+  text-shadow: 0px 2px 6px rgba(0, 0, 0, 0.405);
+  text-transform: lowercase;
+  border-radius: 12px;
+  opacity: 0;
+  transition: opacity 6.3s ease-in;
+}
+
+.display {
+  display: flex !important;
+  opacity: 1 !important;
+}
+
+.controls {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  width: 400px;
+  margin: 0;
+  padding: 0;
+}
+
+.controls #ai-btn {
+  background:var(--elements);
+}
+
+.controls #ai-btn:hover {
+  background: #000;
+  color: var(--bg-end);
+}
+
+.controls #ai-btn.on {
+  background: #000;
+  color: var(--bg-end);
+}
+
+.credit {
+  padding: 0;
+  margin: 0 0 1rem;
+  width: 100%;
+}
+
+.credit a {
+  color: var(--elements);
+  text-decoration: none;
+  transition: color 0.3s;
+  padding: 0;
+  margin: 0;
+}
+
+.credit a:hover {
+  cursor: pointer;
+  color: #000;
+}
+
+.credit a span {
+  margin: 0 0.5rem 3px 0;
+}
