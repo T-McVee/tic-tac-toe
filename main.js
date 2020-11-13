@@ -150,10 +150,18 @@ const ButtonFactory = (id, text, actions) => {
   const _toggleState = (e) => {
     state = !state;
     e.target.classList.toggle('on');
+    e.target.id == 'ai-btn' ? updateButton(e) : null;
+  }
+
+  const updateButton = (e) => {
+    let active;
+    state ? active = 'ON' : active = 'OFF';
+    e.target.textContent = `A.I: ${active}`
   }
 
   return {
     createButton,
+    updateButton
   }
 }
 
@@ -174,7 +182,6 @@ const PlayerFactory = (name, marker) => {
     let cell = {
       target: document.querySelector(`[data-xy='${x},${y}']`)
     }
-
     return cell;
   }
 
@@ -184,6 +191,9 @@ const PlayerFactory = (name, marker) => {
 
   return { name, marker, takeTurn };
 }
+
+
+
 
 // Game Controller
 const Game = (() => {
@@ -196,6 +206,7 @@ const Game = (() => {
   }
 
   let currentPlayer = players.playerOne;
+
   let popup = PopupFactory();
 
   const _makeMove = (e) => {
@@ -227,7 +238,6 @@ const Game = (() => {
     } else {
       currentPlayer = players.playerOne;
     }
-
   }
 
   const _toggleAi = () => {
@@ -279,7 +289,7 @@ const Game = (() => {
 
   const _init = (() => {
     let newGameBtn = ButtonFactory('new-game-btn', 'New Game', [gameBoard.resetBoard, popup.hidePopup]);
-    let aiBtn = ButtonFactory('ai-btn', 'A.I', [_toggleAi, gameBoard.resetBoard, popup.hidePopup]);
+    let aiBtn = ButtonFactory('ai-btn', 'A.I: ON', [_toggleAi, gameBoard.resetBoard, popup.hidePopup]);
     gameBoard.domElements.controls.appendChild(newGameBtn.createButton());
     gameBoard.domElements.controls.appendChild(aiBtn.createButton());
     board.addEventListener('click', _makeMove);
